@@ -1,0 +1,7 @@
+In the correspoding code named "Rod Simple", I have used a very primitive approach.
+
+I have simply calculated all the partitions of the given rod (treted as an integer) of length n.
+
+Then I have found out the maximum value from all the given partitions using the price data provided.
+
+(I have assumed price 0 for segment lenghts whose prices are not mentioned)

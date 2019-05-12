@@ -3,6 +3,7 @@ using namespace std;
 
 static int cnt=0;
 
+
 // Structure to encapsulate segment length and price together
 struct lenpr
 {
@@ -10,23 +11,25 @@ struct lenpr
     int pr;
 };
 
+
 // Search function to search for the price of a given segment length in array of lengths and prices
+// If 2 prices are provided for the same segment then the higher price is used
 int searchpr(int a,lenpr x[])
 {
     int flag=0;
     int i;
+    int price =0;
     for(i=0;i<cnt;i++)
     {
-        if(a==x[i].len)
+        if((a==x[i].len)&&(x[i].pr>price))
         {
             flag=1;
-            break;
+            price=x[i].pr;
         }
     }
-    if(flag==0)
-    return 0;
-    else return x[i].pr;
+	return price;
 }
+
 
 // A utility function to calculate price of given partition
 int findval(int p[], int n,lenpr x[])
@@ -40,6 +43,7 @@ int findval(int p[], int n,lenpr x[])
     return val;
 }
 
+
 //Function to find partition with max value and to return the max value
 int maxval(int n,lenpr x[])
 {
@@ -47,6 +51,8 @@ int maxval(int n,lenpr x[])
     int k = 0;	 	// Index of last element in a partition
     p[k] = n;  		// Initialize first partition as number itself
     int max=0;		//To store the max revenue
+    
+    
     // This loop first calculates the value of current partition, compares it with current max value, then generates next partition
     // The loop stops when the last partition (all 1s) is reached
     while (true)
@@ -98,18 +104,23 @@ main()
 	int n,c,j=0;
 	cout<<"\nEnter Length of Rod : ";
 	cin>>n;
-    lenpr x[n];
-    cout<<"\nEnter Segment Lengths : (enter -1 to terminate)";
+    lenpr x[100*n];
+    cout<<"\nEnter Segment Lengths and Prices(enter -1 to terminate)"<<endl<<"---------------------------------------------------";
     while(1)
     {
+    	len : cout<<"\nEnter Length : ";  // Labelling the line
         cin>>c;
         if(c==-1)
         break;
+        else if (c>n)
+        {
+        	cout<<"\nINVALID LENGTH (ignored)";
+        	goto len;
+		}
         else
         {
             cnt++;
             x[j].len=c;
-            cout<<endl;
             cout<<"Enter Price : ";
             cin>>c;
             x[j].pr=c;

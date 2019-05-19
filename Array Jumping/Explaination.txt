@@ -1,0 +1,2 @@
+In this version of the code, I have simply called a function which tells us the element that will ensure the largest jump.
+The element needs to be in the current jumpable distance ie the value of the current element on which we are present.

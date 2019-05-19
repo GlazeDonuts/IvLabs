@@ -29,9 +29,27 @@ main()
     exit(0);
   }
 
+// Checking if there exists a blockage in the Array
+// Blockage is when an element is followed by equal more number of zeroes than its value
+  int cnt;
+  int j,k;
+  for(j=0;j<c;j++)
+  {
+    cnt=0;
+    for(k=j;k<=j+a[j];k++)
+    {
+      if(!a[k])
+      cnt++;
+    }
+    if(cnt==a[j])
+    {
+      cout<<"Can NOT proceed beyond Position : "<<j+1<<" i.e Element : "<<a[j]<<endl;
+      exit(0);
+    }
+  }
+
   int b[c];
   int i=0,l=0;
-  int jt;
   while(i<c)
   {
     b[l]=a[i];		//Storing the elements we jumped to, in another array
